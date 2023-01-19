@@ -1,0 +1,83 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+% \usepackage{fourier}
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+  \maketitle
+  \section{}
+
+    Let $B$ be a ring where $x = x^2$ for all $x$. Some immediate consequences
+    are:
+
+    $B$ is commutative:
+
+    Every element is its own additive inverse:
+
+    \[ x + x = (x + x)^2 = x^2 + x^2 + x^2 + x^2 = x + x + x + x\]
+    \[0 = x + x\]
+
+    Multiplication is commutative:
+
+    \[ x + y = (x + y)^2 = x^2 + xy + yx + y^2 = x + xy + yx + y\]
+    \[0 = xy + yx\]
+    \[xy = -yx = yx\]
+
+    Where the last identity follows from our previous result.
+
+    Now, define the following binary relation: $x \leq y$ iff $xy = x$. We get:
+
+    \[xx = x \text{, so } x \leq x\]
+    \[xy = x, yz = y \rightarrow xz = x(yz) = (xy)z = yz = x \text{, so } x
+    \leq y, y \leq z \rightarrow x \leq z\]
+
+    \[xy = x, yx = y \rightarrow x = xy = yx = y \text{, so } x \leq y, y \leq
+    x \rightarrow x = y\]
+
+    So, this is a reflexive partial order. Furthermore,
+
+    \[0x = 0, x1 = x \rightarrow 0 \leq x, x \leq 1\]
+
+    So we have greatest and least elements. We also have least upper bounds and
+    greatest upper bounds:
+
+    If $c \leq x, c \leq y$, then $c \leq xy \leq x, y$: By definition,
+    $cx = c, cy = c$. Then,
+
+    \[ cxy = cy = c \rightarrow c \leq xy\]
+    \[ x(xy) = xy \rightarrow xy \leq x\]
+    \[ y(xy) = (xy)y = xy \rightarrow xy \leq y\]
+
+
+    If $x \leq c, y \leq c$, $x, y \leq x + xy + y \leq c$: By definition,
+    $xc = x, yc = y$. Then,
+
+    \[(x + y + xy)c = xc + yc + xyc = x + y + xy \rightarrow x + y + xy \leq c\]
+    \[(x + y + xy)x = x + yx + yx = x \rightarrow x \leq x + y + xy\]
+    \[(x + y + xy)y = xy + y + xy = y \rightarrow y \leq x + y + xy\]
+
+    A partial order with least upper bounds ('joins') and greatest lower bounds
+    ('meets') is called a lattice; a lattice with a greatest and least element
+    is called a bounded latice. (wikipedia)
+
+    Denoting the operations $x \frown y = xy, x \smile y = x + y + xy$, these
+    operations a
+
+    This is object is called a boolean algebra. We will now proceed to define
+    them by starting from a lattice and defining a ring structure. One advantage
+    of that approach is that in order to verify a map between boolean algebras
+    is a homomorphism, it will suffice to check that it respects the order
+    relation ($x \leq y$ iff $f(x) \leq f(y)$).
+
+
+
+
+
+\end{document}
+
