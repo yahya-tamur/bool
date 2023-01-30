@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage{amsfonts}
 % \usepackage{fourier}
 
 \renewcommand{\thesubsection}{\thesection.\alph{subsection}}
@@ -62,10 +63,6 @@
     \[(x + y + xy)x = x + yx + yx = x \rightarrow x \leq x + y + xy\]
     \[(x + y + xy)y = xy + y + xy = y \rightarrow y \leq x + y + xy\]
 
-    A partial order with least upper bounds ('joins') and greatest lower bounds
-    ('meets') is called a lattice; a lattice with a greatest and least element
-    is called a bounded latice. (wikipedia)
-
     Denoting the operations $x \frown y = xy, x \smile y = x + y + xy$, these
     operations a
 
@@ -73,11 +70,97 @@
     them by starting from a lattice and defining a ring structure. One advantage
     of that approach is that in order to verify a map between boolean algebras
     is a homomorphism, it will suffice to check that it respects the order
-    relation ($x \leq y$ iff $f(x) \leq f(y)$).
+    relation ($x \leq y$ iff $f(x) \leq f(y)$). We will also need the definition
+    based on rings to discuss ideals later.
+
+    \section{}
+
+    A partial order with least upper bounds ('joins') and greatest lower bounds
+    ('meets') is called a lattice; a lattice with a greatest and least element
+    is called a bounded latice. A lattice where $\smile$ and $\frown$ distribute
+    over each other is called a a distributive lattice, and a lattive where, for
+    every $x$ there's a $x'$ with $x \smile x' = 1$, $x \frown x' = 0$ is called
+    a complemented lattice. Such a complement is unique -- let $x'$, $x''$ be
+    complements of $x$. Then,
+
+    \[x' \smile x'' = (x' \smile  x'') \frown 1\]
+    \[= (x' \smile  x'') \frown (x \smile x'')\]
+    \[= (x' \frown x) \smile x''\]
+    \[= 0 \smile x'' = x''\]
+
+    So, $x' \leq x''$, by applying the definition in reverse we get $x'' \leq
+    x'$ so $x' \ x''$. In particular, this shows that the complement of the
+    complement of $x$ is $x$.
+
+    We can also use this to prove de Morgan's laws:
+
+    \[(x' \smile y') \frown (x \frown y) = (x' \frown (x \frown y)) \smile (y'
+    \frown (x \frown y))\]
+    \[ = (0 \frown y) \smile (0 \frown x) = 0\]
+
+    \[(x' \smile y') \smile (x \frown y) = ((x' \smile y') \smile x) \frown (x'
+    \smile y') \smile y)\]
+    \[ = (1 \smile y') \frown (1 \smile x') = 1\]
+
+    So, $x' \smile y'$ is the complement of $x \frown y$:
+    \[(x' \smile y') = (x \frown y)'\]
+    Replacing $x$ and $y'$ by their respective complements, and taking the
+    complement of both sides,
+    \[(x'' \smile y'')' = (x' \frown y')''\]
+    \[(x \smile y)' = x' \frown y'\]
+
+    To make this a ring, the multiplication is defined as $\frown$, and the
+    addition is defined as:
+
+    \[ x + y = (x \frown y') \smile (x' \frown y)\]
+
+    I'll omit the details, but this does form a ring, with $x^2 = x \frown x =
+    x$, so a boolean algebra.
+
+    Our previous definition of $\smile$ is compatible:
+
+
+    \[A = \{X: X \subseteq \mathbb{N}: X \text{ or } \mathbb{N} - X \text{ is
+    finite} \} \]
+
+    \section{}
+
+    A homomorphism of boolean algebras is a homomorphism of rings that happen to
+    be boolean albegras -- maps $h$ so that
+
+    \[h(x+y) = h(x) + h(y)\]
+    \[h(xy) = h(x)h(y)\]
+    \[h(1) = 1\]
+
+    The condition $h(0)= 0$ can be derived from:
+
+    \[h(0) = h(0+0) = h(0)+h(0) = 0\]
+
+    From this definition, we can easily prove
+
+    \[h(x \frown y) = h(xy) = h(x)h(y) = h(x) \frown h(y)\]
+    \[h(x') = h(x+1) = h(x) + h(1) = h(x) + 1 = h(x)'\]
+    \[h(x \smile y) = h(x + y + xy) = h(x) + h(y) + h(x)h(y) = h(x) \smile
+    h(y)\]
+    \[x \leq y \rightarrow xy = x \rightarrow h(xy) = h(x) \rightarrow h(x) \leq
+    h(y)\]
+
+    It also suffices to specify
+
+    \[ h(x \frown y) = h(x) \frown h(y) \]
+    \[h(x') = h(x)'\]
+
+    Since
+    \[x + y = (x \frown y') \smile (x' \frown y) = (x \frown y')' \frown (x'
+    \frown y)'\]
+
+    An isomorphism of Boolean algebras is a bijective homomorphism. An inverse
+    of an isomorphism is also a homomorhpism:
 
 
 
 
+    
 
 \end{document}
-
+ 
