@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{amsfonts}
 % \usepackage{fourier}
 
@@ -123,10 +124,7 @@
     \[A = \{X: X \subseteq \mathbb{N}: X \text{ or } \mathbb{N} - X \text{ is
     finite} \} \]
 
-    \section{homomorphisms and isomorphisms}
-
-    TODO: incomplete, and necessary for the final result (at least the fact that
-    $\leq$ determines an isomorphism is)
+    \section{Homomorphisms and Isomorphisms}
 
     A homomorphism of boolean algebras is a homomorphism of rings that happen to
     be boolean albegras -- maps $h$ so that
@@ -159,6 +157,9 @@
 
     An isomorphism of Boolean algebras is a bijective homomorphism. An inverse
     of an isomorphism is also a homomorhpism:
+
+
+
 
     \section{Ideals}
 
@@ -230,7 +231,7 @@
       Clearly, $0 = a*0 + 0 \in K$, if $ay_1 + z_1$, $ay_2 + z_2 \in K$, since
       the ring is commutative,
       \[ay_1 + z_1 -(ay_2 + z_2) = a(y_1-y_2) + (z_1 - z_2) \in K\]
-      And, if $ay + z$ \in $K$,
+      And, if $ay + z \in K$,
       \[(ay + z)t = a(yt) + (zt) \in K\]
       So, $K$ is an ideal. It includes any element $a*0 + y$ of $I$, and it
       includes $a*1 + 0 = a$, which isn't in $I$. Since $I$ is maximal, $K$ must
@@ -238,7 +239,7 @@
       \[ay + z = 1\]
       Then,
       \[ay + z= [a][y] + [z] = [a][y] = 1\]
-      Note that z \in $I$. Then, any nonzero element of $A/I$ does have an
+      Note that $z \in I$. Then, any nonzero element of $A/I$ does have an
       inverse, and this proof is complete.
 
       Finally, note that $\{0,1\}$ is the only Boolean algebra which is a field:
@@ -357,16 +358,22 @@
       properties $(3)$ and $(3')$ that every homomorphism $A \rightarrow
       \{0,1\}$ corresponds bijectively to a maximal ideal and an ultrafilter.
 
-      \subsection{Filterbases}
+      Remark.
 
-        skipped for now -- I'd be copying the book too closely. we'll see what
-        we need later.
+      For any $x \neq 0 \in A$, we can form a filter:
+      \[ F = \{y \in A: y \geq x\}\]
 
+      It's easy to see that $0 \notin F$, $1 \in F$, $u, v \in F$ implies $u
+      \frown v \in F$, and $u \in F, v \geq u$ implies $v \in F$, so it's indeed
+      a filter.
 
-
-      
-
-
+      Krull's theorem, which is proven with the axiom of choice, states that
+      every ideal in a commutative ring is included in some maximal ideal. This
+      implies that ecery element in $x$ is included in some ultrafilter.
+%      \subsection{Filterbases}
+%
+%        skipped for now -- I'd be copying the book too closely. we'll see what
+%        we need later.
 
 
 
@@ -377,35 +384,35 @@
       \subsection{An equivalent condition for compactness}
 
         %%%%Probably not necessary: {
-        It will be convenient later to rephrase the definition of compactness as
-        follows.
-
-        The usual definition states that every open cover of a topological space
-        has a finite subcover. We'll also assume the topological space has to be
-        Hausdorff. Consider the following condition:
-
-        Every open cover of a topological space by sets in some basis has a
-        finite subcover.
-
-        Clearly the usual definition implies this; conversely, if this is true,
-        for any open cover $\{U_i\}_{i \in I}$, we can form an open cover by
-        basis elements by finding a cover $\{V_{ij}\}_{j \in J_i}$ of every
-        $U_i$ by basis elements, find a finite subcover
-        $\{V_{i_kj_k}\}_{k=1}^n$ and then pick the open set these basic sets
-        were in in the original cover:
-        \[\{U_{i_k}\}_{k=1}^n\]
-        This covers the topological space, since $\{V_{i_kj_k}\}_{k=1}^n$ did as
-        well.
-
-        Finally, we can state this condition by equivalently talking about the
-        complements:
-
-        For every set of (closed) complements of basic open sets whose total
-        intersection is empty, we can find a finite subset whose intersection is
-        still empty.
-
-        %%%%}
-
+        %It will be convenient later to rephrase the definition of compactness as
+        %follows.
+%
+        %The usual definition states that every open cover of a topological space
+        %has a finite subcover. We'll also assume the topological space has to be
+        %Hausdorff. Consider the following condition:
+%
+        %Every open cover of a topological space by sets in some basis has a
+        %finite subcover.
+%
+        %Clearly the usual definition implies this; conversely, if this is true,
+        %for any open cover $\{U_i\}_{i \in I}$, we can form an open cover by
+        %basis elements by finding a cover $\{V_{ij}\}_{j \in J_i}$ of every
+        %$U_i$ by basis elements, find a finite subcover
+        %$\{V_{i_kj_k}\}_{k=1}^n$ and then pick the open set these basic sets
+        %were in in the original cover:
+        %\[\{U_{i_k}\}_{k=1}^n\]
+        %This covers the topological space, since $\{V_{i_kj_k}\}_{k=1}^n$ did as
+        %well.
+%
+        %Finally, we can state this condition by equivalently talking about the
+        %complements:
+%
+        %For every set of (closed) complements of basic open sets whose total
+        %intersection is empty, we can find a finite subset whose intersection is
+        %still empty.
+%
+        %%%%%}
+%
       \subsection{Zero dimensional topological spaces}
 
         A topological space is said to be zero dimensional if it has a basis
@@ -494,10 +501,18 @@
       by $\{h \in S(A) : h(0) = 1\}$ and $\{h \in S(A) : h(1) = 1\}$
       respectively.
 
+      For uniqueness, let $a \neq b$. Then, $a+b \neq 0$.
+      Then, there's an ultrafilter that includes $a+b$, so a homomorphism with
+      
+      \[\phi(a+b) = 1 = \phi(a) + \phi(b)\]
 
-      %%TODO: at least mention the ultrafilter theorem
+      Since the right hand side is in $\{0,1\}$, this implies $\phi(a) = 1$ and
+      $\phi(b) = 0$, or vice versa. Without loss of generality, in this case,
 
-      For uniqueness, !!! requires principal filters + ultrafilter theorem
+      \[\phi \in \{h \in S(A): h(a) = 1\}\]
+      \[\phi \notin \{h \in S(A) : h(b) = 1\}\]
+
+      So the sets aren't equal.
 
       As a corollary, the complements of the sets in the basis are exactly the
       sets in the basis:
@@ -557,7 +572,17 @@
       We've done a lot of the work in the previous section: We know that $H(a)$
       is a clopen subset of $S(A)$ for any $a$, and that any clopen subset is in
       the image, so the map is surjective onto $B(S(A))$. We also know that this
-      map is injective, since we've seen that $a$ is unique.
+      map is inject      \[= h \mapsto (a \mapsto h ( H_{A'}^{-1} ( \alpha^{-1} (H_A (a))))) \]
+      
+      \[= h \mapsto (a \mapsto h ( A_{A'}^{-1} ( \alpha^{-1} \{h \in S(A) :
+      h(a) = 1 \} )))\]
+
+      \[= h \mapsto (a \mapsto h ( A_{A'}^{-1} ( \{h' \in S(A') :
+      \alpha(h') \in \{ h \in S(A) : h(a) = 1\} \} )))\]
+
+      \[= h \mapsto (a \mapsto h ( A_{A'}^{-1} ( \{h' \in S(A') :
+      \alpha(h')(a) = 1\} )))\]
+ive, since we've seen that $a$ is unique.
 
       To show that it's an isomorphism, we'll show that $H(a) \leq H(b)$ if and
       only if $a \leq b$.
@@ -601,7 +626,7 @@
 
       Now, we'll show that it's injective.
 
-      If $x \neq y$, because $X$ is Hausdorrf, we can find an open set $O$ with
+      ]If $x \neq y$, because $X$ is Hausdorrf, we can find an open set $O$ with
       $x \in O$, $y \notin O$. $O$ is a union of basic open sets, so there's a
       clopen set $\Omega \in B(X)$ with $x \in \Omega$, $y\notin \Omega$. Then,
       \[f_x(\Omega) = 1 \neq f_y(\Omega) = 0\]
@@ -610,16 +635,170 @@
       Now, we'll show that it's surjective.
 
       Let $h$ be an arbitrary element of $S(B(X))$, so a homomorphism $B(X)
-      \rightarrow \{0,1\}$. 
+      \rightarrow \{0,1\}$. The filter associated with $h$ is
+      \[U = \{\Omega \in B(X) : h(\Omega) = 1\}\]
+
+      Since $U$ is a filter, it has the property that if $x_1, ... x_n \in U$,
+      their intersection $x_1 \frown x_2 \frown ... \frown x_n$ is in $U$, so
+      it's nonzero -- in this case, it's not the empty set.
+
+      The usual definition of compactness states that every open cover has a
+      finite subcover. By taking complements of every set in the cover, this
+      equivalently states that every infinite set of closed sets whose
+      intersection is empty has a finite subset of closed sets whose
+      intersection is still empty.
+
+      Now, since $X$ is compact, and the elements of $U$ are closed, and every
+      finite intersection of elements of $U$ are nonempty, we can conclude that
+      the intersection of every element of $U$ is still nonempty.
+
+      Let $x$ be an element of this intersection.
+
+      For every clopen subset $\Omega$ of $B(X)$,
+
+      $\Omega$ might be an element of $U$. In this case, since $c$ is in every
+      element of $U$, it's in $\Omega$, and
+      \[f_x(\Omega) = 1\]
+      If $\Omega$ isn't an element of $U$, $1+\Omega$ is, since $U$ is an
+      ultrafilter. Then, $x$ is in $1+\Omega$, and
+      \[f_x(1+\Omega) = 1\]
+      Then, since $f_x$ is a homomorphism,
+      \[f_x(\Omega) = 0\]
+
+      Then,
+      \[f_x(\Omega) = 1 \text{ iff } \Omega \in U\]
+      And, by definition, $U = \{\Omega \in B(X) : h(\Omega) = 1\}$. So,
+      \[f_x = h\]
+      Then, $H: f \mapsto f_x$ is surjective onto $S(B(X))$. Since we know that
+      $f$ is injective, this also tells us the $x$, the intersection of all the
+      elements of $U$, is unique -- $h = f_x = f_y$ implies $x=y$.
+
+      Finally, we can prove that $f$ is continuous:
+
+      Let $G$ be an element in the basis of $S(B(X))$, so a clopen set. We've
+      seen that i Stone spaces, this means it has the form
+
+      \[G = \{h \in S(B(X)): h(\Omega) = 1\}\]
+
+      For some $\Omega \in B(X)$.
+
+      \[f^{-1}(G) = \{x \in X : f_x \in G\}\]
+      \[ = \{x \in X : f_x(\Omega) = 1\}\]
+      \[ = \{x \in X : x \in \Omega\} = \Omega\]
+
+      Where $\Omega \in B(X)$, so it's open. Since the inverse image of elements
+      in the basis are open, $f$ is continuous.
+
+      $f^{-1}$ is continuous:
+
+      Let $\Omega \in X$ be an open set in the basis of $X$.
+
+      \[(f^{-1})^{-1}(\Omega) = f(\Omega) = \{f_x \in S(B(X)) : x \in \Omega\}\]
+
+      We've seen that $f$ is surjective, so every $h \in S(B(X))$ has form $f_x$
+      for some $x$. Then, $h(\Omega) = 1$ if and only if $x$ such that $h = f_x$
+      is in $\Omega$ -- by definition of $f$, $f_x(\Omega) = 1$ if and only if
+      $x$ is in $\Omega$. This means:
+
+      \[\{f_x \in S(B(X)) : x \in \Omega\} = \{h \in S(B(X)) : h(\Omega) = 1\}\]
+
+      The latter is a basis element in the Stone space of $B(X)$, so we conclude
+      that $f^{-1}$ is continuous as well.
+
+      Name the isomorphism $A \to B(S(A))$ $H_A$.
+
+    \section{Categorical equivalence}
+
+      We will now construct a bijection between homomorphisms between Boolean
+      algebras $A$ to $A'$ and continuous functions $S(A')$ to $S(A)$.
+
+      Since elements of $S(A)$ can be regarded as functions $A \rightarrow
+      \{0,1\}$, we can define this mapping similarly to dual spaces in vector
+      spaces:
+
+      \[\Phi(\phi) = (h : A' \rightarrow \{0,1\}) \mapsto (h \circ \phi : A
+      \rightarrow \{0,1\})\]
+
+      We'll first show that this map is actually continuous.
+
+      Let $\Omega$ be an element in the basis of $S(A)$. It has form $\{h \in
+      S(A): h(a) = 1\}$ for some $a \in A$.
+
+      \[(\Phi(\phi))^{-1}(\Omega) = \left\{h' \in S(A') : \Phi(\phi)(h') \in \{h
+      \in S(A): h(a) = 1\} \right\}\]
+      \[ = \{h' \in S(A') : (\Phi(\phi)(h'))(a) = 1 \}\]
+      \[ = \{h' \in S(A') : (h' \circ \phi)(a) = 1 \}\]
+      \[ = \{h' \in S(A') : h'(\phi(a)) = 1\}\]
+
+      This is an open set in $S(A')$, so this map is continuous.
+
+      We'll show that this is a bijection by defining an inverse. If $\alpha$ is
+      a continuous function $S(A')$ to $S(A)$, let $\alpha^{-1}$  be the
+      function $\mathcal{P}(S(A)) \to \mathcal{P}(S(A'))$. Since $\alpha$ is
+      continuous, $\alpha^{-1}$ takes clopen sets to clopen sets, and so it's a map
+      $B(S(A')) \to B(S(A))$. Then, the following defines a function $A \to
+      B(S(A)) \to B(S(A')) \to A'$:
+
+      \[\Psi(\alpha) = H_{A'}^{-1} \circ \alpha^{-1} \circ H_A\]
+
+      \[(\Psi \circ \Phi)(\phi) = \Psi(\Phi(\phi))\]
+      \[ = H_{A'}^{-1} \circ (\Phi(\phi))^{-1} \circ H_A \]
+      \[ = a \mapsto (H_{A'}^{-1} \circ (\Phi(\phi))^{-1})  \left(\{h \in S(A) : h(a) =
+      1 \}\right) \]
+      \[ = a \mapsto H_{A'}^{-1} \left( \left\{g \in S(A') : \Phi(\phi)(g) \in \{h \in S(A) : h(a) =
+      1 \}\right\} \right) \]
+      \[ = a \mapsto H_{A'}^{-1} (\{g \in S(A') : ((\Phi(\phi))(g))(a) = 1 \}) \]
+      \[ = a \mapsto H_{A'}^{-1} (\{g \in S(A') : ((g \circ \phi)(a) = 1 \})) \]
+      \[ = a \mapsto H_{A'}^{-1} (\{g \in S(A') : g(\phi(a)) = 1 \}) \]
+      \[ = a \mapsto H_{A'}^{-1} (H_{A'}(\phi(a))) \]
+      \[ = a \mapsto \phi(a)\]
+      \[ = \phi\]
+
+      \[(\Phi \circ \Psi)(\alpha) = \Phi(H_{A'}^{-1} \circ \alpha^{-1} \circ
+      H_A)\]
+      \[= h \mapsto h \circ H_{A'}^{-1} \circ \alpha^{-1} \circ H_A \]
+
+      Let $U$ be the argument of $h \circ H_{A'}^{-1}$ in the expression, so
+
+      \[U \in S(B(A)) = \alpha^{-1} (H_A (a))\]
+      \[ = \alpha^{-1} \{h \in S(A) : h(a) = 1 \}\]
+      \[ = \{h' \in S(A') :\alpha(h') \in \{ h \in S(A) : h(a) = 1\} \}\]
+      \[ = \{h' \in S(A') : \alpha(h')(a) = 1\} \]
 
 
+      $U$ is equal to $\{h \in S(X) : h(\Omega) = 1\}$ for some $\Omega \in
+      B(X)$. Then,
 
+      \[ h ( H_{A'}^{-1} (U)) =  h(H_A^{-1}(\{h \in S(X) : h(\Omega) = 1\})) = h(H_A^{-1}(H_A(\Omega))) =
+      h(\Omega)\]
 
+      By definition, $\Omega$ is the number such that $h \in U$ if and only if
+      $h(\Omega) = 1$. Then,
+      \[ h ( H_{A'}^{-1} (U)) = 1 \text{ if and only if } h \in U\]
+      \[ h ( H_{A'}^{-1} (U)) = 1 \text{ if and only if } h \in \{h' \in S(A') :
+      \alpha(h')(a) = 1\} \]
+      \[ h ( H_{A'}^{-1} (U)) = 1 \text{ if and only if } \alpha(h)(a) = 1\]
+      Since all the possible values are $0$ or $1$,
+
+      \[ h ( H_{A'}^{-1} (U)) = \alpha(h)(a)\]
+      \[(\Phi \circ \Psi)(\alpha) = h \mapsto (a \mapsto \alpha(h)(a))\]
+      \[(\Phi \circ \Psi)(\alpha) =  h \mapsto \alpha(h)\]
+      \[(\Phi \circ \Psi)(\alpha) = \alpha\]
 
     To Do:
 
+      So, $\Phi$ defines a map from the morphisms of the category of Boolean
+      algebras and homomorphisms to the morphisms of the category of Boolean
+      topological spaces and continuous functions. With $S$ mapping the objects,
+      it's a functor -- $\Phi(\text{id}) = \text{id}$ and $\Phi(g \circ f) =
+      \Phi(g) \circ \Phi(f)$ is satisfied, since it's a very standard
+      construction:
+
+
+
+
       -- section on homomorphisms + isomorphisms
-      -- principal filter / ultrafilter
+      -- category equicalence
       -- organize better
       -- x + 1 for complements isn't great, introduce + use $x^c$ notation
 
@@ -628,4 +807,4 @@
       -- atomless + countable boolean algebra
 
 \end{document}
- 
+
