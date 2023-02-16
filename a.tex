@@ -13,12 +13,15 @@
 
 \begin{document}
   \maketitle
+
   \section{}
+
+    First, we'll define Boolean algebras, first as a ring where $x^2=x$, then as
+    a lattice with certain properties. We'll show that both define the same
+    objects. Both approaches will be useful later on.
 
     Let $B$ be a ring where $x = x^2$ for all $x$. Some immediate consequences
     are:
-
-    $B$ is commutative:
 
     Every element is its own additive inverse:
 
@@ -36,53 +39,73 @@
     Now, define the following binary relation: $x \leq y$ iff $xy = x$. We get:
 
     \[xx = x \text{, so } x \leq x\]
-    \[xy = x, yz = y \rightarrow xz = x(yz) = (xy)z = yz = x \text{, so } x
-    \leq y, y \leq z \rightarrow x \leq z\]
 
-    \[xy = x, yx = y \rightarrow x = xy = yx = y \text{, so } x \leq y, y \leq
-    x \rightarrow x = y\]
+    If $x \leq y$, $y \leq z$,
+    \[xy = x, yz = y\]
+    \[xz = x(yz) = (xy)z = yz = x \text{, so } x \leq z\]
+
+    And, if $x \leq y$, $y \leq x$,
+
+    \[x = xy = yx = y\]
 
     So, this is a reflexive partial order. Furthermore,
 
-    \[0x = 0, x1 = x \rightarrow 0 \leq x, x \leq 1\]
+    \[0x = 0, x1 = x\]
 
-    So we have greatest and least elements. We also have least upper bounds and
-    greatest upper bounds:
+    So, $0 \leq x$, $x \leq 1$.
 
-    If $c \leq x, c \leq y$, then $c \leq xy \leq x, y$: By definition,
-    $cx = c, cy = c$. Then,
+    We also have least upper bounds and greatest upper bounds:
 
-    \[ cxy = cy = c \rightarrow c \leq xy\]
-    \[ x(xy) = xy \rightarrow xy \leq x\]
-    \[ y(xy) = (xy)y = xy \rightarrow xy \leq y\]
+    We'll claim that for every $c \leq x,y$, $c \leq xy \leq x,y$.
 
+    If $c \leq x, c \leq y$, then $cx = x$, $cy = y$. Then,
 
-    If $x \leq c, y \leq c$, $x, y \leq x + xy + y \leq c$: By definition,
-    $xc = x, yc = y$. Then,
+    \[ cxy = cy = c\]
 
-    \[(x + y + xy)c = xc + yc + xyc = x + y + xy \rightarrow x + y + xy \leq c\]
-    \[(x + y + xy)x = x + yx + yx = x \rightarrow x \leq x + y + xy\]
-    \[(x + y + xy)y = xy + y + xy = y \rightarrow y \leq x + y + xy\]
+    So $c \leq xy$.
+
+    \[ x(xy) = xy\]
+
+    So $xy \leq x$.
+
+    \[ y(xy) = (xy)y = xy\]
+
+    And then $xy \leq y$.
+
+    Similarly, we'll claim that if $x,y \leq c$, $x,y \leq x + y + xy \leq c$.
+    If $x \leq c, y \leq c$,
+
+    \[(x + y + xy)c = xc + yc + xyc = x + y + xy\]
+
+    So $x + y + xy \leq c$.
+
+    \[(x + y + xy)x = x + yx + yx = x\]
+
+    So $x \leq x + y + xy$.
+
+    \[(x + y + xy)y = xy + y + xy = y\]
+
+    So, finally, $y \leq x + y + xy$.
 
     Denoting the operations $x \frown y = xy, x \smile y = x + y + xy$, these
-    operations a
+    operations form a lattice -- a partial order with least upper bounds and greatest
+    lower bounds.
 
-    This is object is called a boolean algebra. We will now proceed to define
-    them by starting from a lattice and defining a ring structure. One advantage
-    of that approach is that in order to verify a map between boolean algebras
-    is a homomorphism, it will suffice to check that it respects the order
-    relation ($x \leq y$ iff $f(x) \leq f(y)$). We will also need the definition
-    based on rings to discuss ideals later.
+    This object is called a boolean algebra. We will now proceed to define
+    Boolean algebras by starting from a lattice and defining a ring structure.
+    One advantage of that approach is that in order to verify a map between
+    boolean algebras is a homomorphism, it will suffice to check that it
+    respects the order relation ($x \leq y$ iff $f(x) \leq f(y)$). We will also
+    need the definition based on rings to discuss ideals later.
 
     \section{}
 
-    A partial order with least upper bounds ('joins') and greatest lower bounds
-    ('meets') is called a lattice; a lattice with a greatest and least element
-    is called a bounded latice. A lattice where $\smile$ and $\frown$ distribute
-    over each other is called a a distributive lattice, and a lattive where, for
-    every $x$ there's a $x'$ with $x \smile x' = 1$, $x \frown x' = 0$ is called
-    a complemented lattice. Such a complement is unique -- let $x'$, $x''$ be
-    complements of $x$. Then,
+    Let $A$ be a lattice, where, for every  $x$ there's a $x'$ with
+
+    \[x \smile x' = 1\]
+    \[x \frown x' = 0\]
+
+    Such a complement is unique -- let $x'$, $x''$ be complements of $x$. Then,
 
     \[x' \smile x'' = (x' \smile  x'') \frown 1\]
     \[= (x' \smile  x'') \frown (x \smile x'')\]
@@ -90,7 +113,7 @@
     \[= 0 \smile x'' = x''\]
 
     So, $x' \leq x''$, by applying the definition in reverse we get $x'' \leq
-    x'$ so $x' \ x''$. In particular, this shows that the complement of the
+    x'$ so $x' = x''$. In particular, this shows that the complement of the
     complement of $x$ is $x$.
 
     We can also use this to prove de Morgan's laws:
@@ -116,24 +139,20 @@
     \[ x + y = (x \frown y') \smile (x' \frown y)\]
 
     I'll omit the details, but this does form a ring, with $x^2 = x \frown x =
-    x$, so a boolean algebra.
+    x$, so a boolean algebra. The complement of $x$ corresponds to taking $1+x$.
 
-    Our previous definition of $\smile$ is compatible:
-
-
-    \[A = \{X: X \subseteq \mathbb{N}: X \text{ or } \mathbb{N} - X \text{ is
-    finite} \} \]
+    % Our previous definition of $\smile$ is compatible:
 
     \section{Homomorphisms and Isomorphisms}
 
-    A homomorphism of boolean algebras is a homomorphism of rings that happen to
-    be boolean albegras -- maps $h$ so that
+    A homomorphism of boolean algebras as rings is a homomorphism of rings that
+    happen to be boolean albegras -- maps $h$ so that
 
     \[h(x+y) = h(x) + h(y)\]
     \[h(xy) = h(x)h(y)\]
     \[h(1) = 1\]
 
-    The condition $h(0)= 0$ can be derived from:
+    The condition $h(0) = 0$ can be derived from:
 
     \[h(0) = h(0+0) = h(0)+h(0) = 0\]
 
@@ -155,23 +174,66 @@
     \[x + y = (x \frown y') \smile (x' \frown y) = (x \frown y')' \frown (x'
     \frown y)'\]
 
-    An isomorphism of Boolean algebras is a bijective homomorphism. An inverse
-    of an isomorphism is also a homomorhpism:
+    An isomorphism of Boolean algebras is a bijective homomorphism. For a
+    surjective $h$, the following condition is necessary and sufficient to
+    define an isomorphism:
 
+    \[x \leq y \text{ if and only if } h(x) \leq h(y) \]
 
+    In an isomorphism, this holds, since
 
+    \[xy = x \text{ if and only if } h(x)h(y) = h(x)\]
+
+    Conversely, if this holds, $h$ is injective -- if $h(x) = h(y)$,
+
+    \[h(x) \leq h(y) \rightarrow x \leq y\]
+    \[h(y) \leq h(x) \rightarrow y \leq x\]
+    \[x = y\]
+
+    We can prove that $x \frown y = h(x \frown y)$ using the greatest lower
+    bound property:
+
+    Let $z$ be the number such that $h(z) = h(x) \frown h(y)$. Then,
+
+    \[h(z) \leq h(x) \rightarrow z \leq x\]
+    \[h(z) \leq h(y) \rightarrow z \leq y\]
+
+    So, $z \leq x \frown y$.
+
+    \[x \frown y \leq x \rightarrow h(x \frown y) \leq h(x)\]
+    \[x \frown y \leq y \rightarrow h(x \frown y) \leq h(y)\]
+    \[h(x \frown y) \leq h(x) \frown h(y) = h(y)\]
+    \[x \frown y \leq z\]
+
+    We can prove that $h(x \smile y) = h(x) \smile h(y)$ using a similar
+    argument.
+
+    $h(1)$ is greater than or equal to every element, so $h(1) = 1$, and
+    similarly $h(0)$ is $0$.
+
+    Finally,
+
+    \[h(x') \smile h(x) = h(x' \smile x) = h(1) = 1\]
+    \[h(x') \frown h(x) = h(x' \frown x) = h(0) = 0\]
+
+    So $h(x') = h(x)'$
+
+    Then, $h$ is a bijective homomorphism as claimed.
+
+    This also shows that the inverse of an isomorphism is still an isomorphism,
+    since the condition $x \leq y \text{ iff } h(x) \leq h(y)$ implies the same
+    thing for the inverse.
 
     \section{Ideals}
 
-      In the following, 'ideal' means proper ideal, or an ideal which is not the
-      whole ring. For a subset $I$ of a Boolean algebra $A$ to be an ideal, the
-      following are necessary and sufficient:
+      In the following, 'ideal' means a proper ideal of a ring, so an ideal
+      which is not the whole ring. For a subset $I$ of a Boolean algebra $A$ to
+      be an ideal, the following are necessary and sufficient:
 
       \[0 \in I, 1 \notin I\]
       \[\text{for all } x, y \in I, x \smile y \in I\]
       \[\text{for all } x \in I, y \in A, y \leq x \text{ implies } y \in I\]
 
-      % special formatting?
       Proof:
       
       Let $I$ be an ideal. $0$ is in $I$, since it's an additive subgroup. $1$
@@ -224,7 +286,8 @@
       \[ab - 1 \in I\]
       $a \in I$, so $ab \in I$. Then,
       \[ab - (ab - 1) = 1 \in I\]
-      This is a contradiction.
+      This is a contradiction. We conclude that, $A/I$ has an non-invertible
+      elements, so it can't be a field.
 
       Conversely, assume $I$ is maximal. Let $[a] \neq 0 \in A/I$. Form
       \[K = \{ay + z: y \in A, z \in I\} \]
@@ -245,7 +308,7 @@
       Finally, note that $\{0,1\}$ is the only Boolean algebra which is a field:
       For every $x$,
       \[(x+1)x = x + x = 0\]
-      Which, if this is a field (or even an integral domain), implies that
+      Which, if this is a field (or even a domain), implies that
       either $x=0$ or $x=1$.
 
       $(2) \rightarrow (3)$ $I$ is the kernel of the quotient map $A \rightarrow
@@ -267,6 +330,10 @@
 
       $(5) \leftrightarrow (6)$ This is an obvious use of induction.
 
+      The fact that maximal ideals are the kernels of homomorphisms $A
+      \rightarrow\{0,1\}$ will be important later on -- the elements of the
+      Stone space of a boolean algebra $A$ are homomorphisms $A \to \{0,1\}$.
+
     \section{Filters}
 
       Filters in order theory are the dual notion of ideals:
@@ -279,7 +346,7 @@
 
       In boolean
       algebras, we can equivalently define them as subsets $F$ such that $\{x
-      \in A: 1+x \in F\}$ is a filter.
+      \in A: 1+x \in F\}$ is an ideal.
 
       Proof:
 
@@ -327,7 +394,7 @@
       \[(6') \text{ if } x_1 \smile ... \smile x_n \in F, \text{ then } x_1 \in
       F \text{ or } ... x_n \in F\]
 
-      We'll prove this be proving that if and only if $F$ has one of these
+      We'll prove this by proving that if and only if $F$ has one of these
       properties, the dual filter $I$ as defined above has the corresponding
       property.
 
@@ -354,22 +421,28 @@
 
       Finally, $(6')$ may be shown to be equivalent to $(5')$ by induction.
 
-      One fact that will be especially impactful later is that we've proven in
-      properties $(3)$ and $(3')$ that every homomorphism $A \rightarrow
-      \{0,1\}$ corresponds bijectively to a maximal ideal and an ultrafilter.
+      Continuing with the remark last section, the property $3$ will be
+      especially important, we'll be interested in homomorphisms $A \to
+      \{0,1\}$. Property 3 says they correspond bijectively with ultrafilters --
+      any ultrafilter is $h^{-1}(1)$ for such a homomorphism, and every such
+      preimage of a homomorphism is an ultrafiler.
 
       Remark.
 
-      For any $x \neq 0 \in A$, we can form a filter:
+      For any $x \neq 0 \in A$, we can form a filter including $x$:
       \[ F = \{y \in A: y \geq x\}\]
 
       It's easy to see that $0 \notin F$, $1 \in F$, $u, v \in F$ implies $u
       \frown v \in F$, and $u \in F, v \geq u$ implies $v \in F$, so it's indeed
       a filter.
 
-      Krull's theorem, which is proven with the axiom of choice, states that
-      every ideal in a commutative ring is included in some maximal ideal. This
-      implies that ecery element in $x$ is included in some ultrafilter.
+      Krull's theorem, which we'll prove later with the axiom of choice, states
+      that every ideal in a commutative ring is included in some maximal ideal.
+      This implies that every element in $x$ is included in some ultrafilter.
+
+      Equivalently, for any $x \in A$, we can form a homomorphism $A
+      \rightarrow \{0,1\}$ with $h(x)=1$.
+
 %      \subsection{Filterbases}
 %
 %        skipped for now -- I'd be copying the book too closely. we'll see what
@@ -379,41 +452,7 @@
 
 
 
-    \section{Topological Spaces}
-
-      \subsection{An equivalent condition for compactness}
-
-        %%%%Probably not necessary: {
-        %It will be convenient later to rephrase the definition of compactness as
-        %follows.
-%
-        %The usual definition states that every open cover of a topological space
-        %has a finite subcover. We'll also assume the topological space has to be
-        %Hausdorff. Consider the following condition:
-%
-        %Every open cover of a topological space by sets in some basis has a
-        %finite subcover.
-%
-        %Clearly the usual definition implies this; conversely, if this is true,
-        %for any open cover $\{U_i\}_{i \in I}$, we can form an open cover by
-        %basis elements by finding a cover $\{V_{ij}\}_{j \in J_i}$ of every
-        %$U_i$ by basis elements, find a finite subcover
-        %$\{V_{i_kj_k}\}_{k=1}^n$ and then pick the open set these basic sets
-        %were in in the original cover:
-        %\[\{U_{i_k}\}_{k=1}^n\]
-        %This covers the topological space, since $\{V_{i_kj_k}\}_{k=1}^n$ did as
-        %well.
-%
-        %Finally, we can state this condition by equivalently talking about the
-        %complements:
-%
-        %For every set of (closed) complements of basic open sets whose total
-        %intersection is empty, we can find a finite subset whose intersection is
-        %still empty.
-%
-        %%%%%}
-%
-      \subsection{Zero dimensional topological spaces}
+    \section{Zero Dimensional Topological Spaces}
 
         A topological space is said to be zero dimensional if it has a basis
         consisting of closed sets. We won't get into a definition of dimension
@@ -467,13 +506,13 @@
       clopen sets. With $S(A)$ under the subspace topology, the same basis forms
       a basis of clopen sets, so $S(A)$ is zero dimensional as well.
 
-      Now, we'll characterize the basis of $S(A)$. Note that we've characterized
-      the basis of $\{0,1\}^A$ as functions which take a finite set of points to
-      either $0$ or $1$.
-
-      The sets in the basis of $S(A)$ are exactly the sets defined as
+      Proposition: The sets in the basis of $S(A)$ are exactly the sets defined
+      as
       \[\{h\in S(A): h(a) = 1\}\]
       for some $a \in A$. This element $a$ is unique.
+
+      Note that the basis of $\{0,1\}^A$ are the functions which take a finite
+      set of points to either $0$ or $1$.
 
       Clearly, every set defined this way is a set in the basis -- $S(A) \cap
       \{f: A \rightarrow \{0,1\} : f(a) = 1\}$.
@@ -497,111 +536,126 @@
       Since $h$ also preserves intersections, this happens if and only if
       \[h(b_1 \frown b_2 \frown ... \frown b_n) = 1\]
 
-      As maybe a special case, notice that the empty set and $S(A)$ are given
+      So we've shown that every open set has the form ${h : h(a) = 1}$ for some
+      $a \in A$.
+
+      Maybe as a special case, notice that the empty set and $S(A)$ are given
       by $\{h \in S(A) : h(0) = 1\}$ and $\{h \in S(A) : h(1) = 1\}$
       respectively.
 
-      For uniqueness, let $a \neq b$. Then, $a+b \neq 0$.
-      Then, there's an ultrafilter that includes $a+b$, so a homomorphism with
-      
+      Now, we'll show that the element $a$ is unique. Let $a \neq b$. Then, $a+b
+      \neq 0$.
+
+      Then, as we've shown using Krull's theorem, there's an ultrafilter that
+      includes $a+b$, so a homomorphism with
+
       \[\phi(a+b) = 1 = \phi(a) + \phi(b)\]
 
       Since the right hand side is in $\{0,1\}$, this implies $\phi(a) = 1$ and
-      $\phi(b) = 0$, or vice versa. Without loss of generality, in this case,
+      $\phi(b) = 0$, or vice versa. Without loss of generality, assume $\phi(a)
+      = 1$. Then,
 
       \[\phi \in \{h \in S(A): h(a) = 1\}\]
       \[\phi \notin \{h \in S(A) : h(b) = 1\}\]
 
       So the sets aren't equal.
 
-      As a corollary, the complements of the sets in the basis are exactly the
-      sets in the basis:
+      As a corollary of this characterization of basis elements, the complements
+      of the sets in the basis are still in the basis:
 
       \[\{h \in S(A) : h(a) = 1\}^c = \{h \in S(A) : h(1+a) = 1\}\]
 
-      Finally, here's a proof that the $S(A)$ is closed. Remember that a
-      function between Boolean algebras is a homomorphism if and only if it
+      So the sets in the basis are clopen. If we can also show that the
+      topological space is closed, we'll show that it's a Boolean topological
+      space. Since the product space $\{0,1\}^A$ is compact by Tychonoff's
+      theorem, we only need to show that it's closed, since a closed subset of a
+      compact space is compact.
+
+      We've proved that a function in $\{0,1\}^A$ is a homomorphism of Boolean
+      algebras if and only if it
       preserves intersections and complements.
 
       Let
       \[\Omega(a,b) = \{ f: A \rightarrow \{0,1\} : f(ab) = f(a)f(b), f(1+a) = 1
       + f(a)\}\]
 
-      Then, by definition,
+      Then, the set of homomorphisms $S(A)$ is exactly:
 
       \[S(A) = \bigcap_{a \in A, b \in A} \Omega(a,b)\]
 
-      Finally, we can write $\Omega(a,b)$ as the following union of closed sets:
+      We can each write $\Omega(a,b)$ as the following finite union of closed
+      sets:
 
-      \[\Omega(a,b) = \{f : f(a) = 0, f(b) = 0, f(ab) = 0), f(1+a) = 1\}
-      \cup \{f : f(a) = 0, f(b) = 1, f(ab) = 0), f(1+a) = 1\}
-      \cup \{f : f(a) = 1, f(b) = 1, f(ab) = 0), f(1+a) = 0\}
-      \cup \{f : f(a) = 1, f(b) = 1, f(ab) = 1), f(1+a) = 0\}
-      \]
+      \[\Omega(a,b) = \{f : f(a) = 0, f(b) = 0, f(ab) = 0), f(1+a) = 1\}\]
+      \[\cup \{f : f(a) = 0, f(b) = 1, f(ab) = 0), f(1+a) = 1\}\]
+      \[\cup \{f : f(a) = 1, f(b) = 1, f(ab) = 0), f(1+a) = 0\}\]
+      \[\cup \{f : f(a) = 1, f(b) = 1, f(ab) = 1), f(1+a) = 0\}\]
 
-      So, $S(A)$ is some arbitrary intersection of closed sets, and is therefore
-      closed itself. As a closed subset of a compact space, it's compact. Then,
+      Then, each $\Omega(a,b)$ is closed as a finite union of closed sets, and
+      $S(A)$ itself is closed, since it's some arbitrary intersection of closed
+      sets. As a closed subset of a compact space, it's compact. Then,
       since it's also zero-dimensional, it's a Boolean topological space.
 
-      We can also show that the clopen sets are exactly the sets in this basis.
+      We already know that the sets in the basis are clopen, but we'll later
+      need the fact that the clopen sets are exactly the sets in this basis.
 
-      Every basis set we've found is already both open and closed. Given an open
-      and closed set $\Gamma$,
+      Given an open and closed set $\Gamma$,
 
       Since it's open, it's covered by sets in the basis $\{\Gamma_i\}_{i \in I}$
       Since $\Gamma$ is a closed subset of a compact space, it's compact. Then,
       find a finite subcover $\Gamma_1, ... \Gamma_n$. Each has form:
       \[\Gamma_i = \{h: h(x_i) = 1\}\]
       Then,
-      \[\Gamma = \{h: h(x_1 \smile x_2 \smile ... \smile x_n)\}\]
+      \[\Gamma = \{h: h(x_1 \smile x_2 \smile ... \smile x_n) = 1\}\]
+      and so it is in the basis.
 
-    \section{}
+    \section{Characterization of Boolean Algebras}
 
-      The Boolean algebra of clopen subsets of a topological space $S$ will be
-      denoted by $B(S)$. This is a Boolean algebra with regular set operations
-      union, intersection, complement by $S$, and is clearly closed under all of
-      these.
+      Given a topological space $S$, the set of its clopen subsets form a
+      Boolean algebra under the regular set operations union, intersection,
+      complement -- clearly, the intersection or complement of clopen sets is
+      clopen. This will be denoted as $B(S)$. Given a connected space, this
+      Boolean algebra does become $\{0,1\}$.
 
       We'll now prove that every Boolean algebra is isomorphic to the Boolean
-      algebra of clopen sets of its Stone space.
+      algebra of clopen sets of its Stone space. In particular, this does show
+      that any Boolean algebra is equivalent to the Boolean algebra of certain
+      subsets of some set, under the set operations intersection, complement,
+      etc.
 
       Let $H$ be the map $A \rightarrow \mathcal{P}(S(A))$
 
       \[H(a) = \{h \in S(A) : h(a) = 1\}\]
 
-      We've done a lot of the work in the previous section: We know that $H(a)$
-      is a clopen subset of $S(A)$ for any $a$, and that any clopen subset is in
-      the image, so the map is surjective onto $B(S(A))$. We also know that this
-      map is inject      \[= h \mapsto (a \mapsto h ( H_{A'}^{-1} ( \alpha^{-1} (H_A (a))))) \]
-      
-      \[= h \mapsto (a \mapsto h ( A_{A'}^{-1} ( \alpha^{-1} \{h \in S(A) :
-      h(a) = 1 \} )))\]
+      We've done a lot of the work in the previous sections: We know that $H(a)$
+      is a clopen subset of $S(A)$ for any $a$, so the codomain is actually
+      $B(S(A))$.
 
-      \[= h \mapsto (a \mapsto h ( A_{A'}^{-1} ( \{h' \in S(A') :
-      \alpha(h') \in \{ h \in S(A) : h(a) = 1\} \} )))\]
+      We know that any basis element, so any clopen subset, has this form, so
+      the map is surjective.  We also know that given any clopen set, $a$ in the
+      expression is unique, so the map is injective.
 
-      \[= h \mapsto (a \mapsto h ( A_{A'}^{-1} ( \{h' \in S(A') :
-      \alpha(h')(a) = 1\} )))\]
-ive, since we've seen that $a$ is unique.
-
-      To show that it's an isomorphism, we'll show that $H(a) \leq H(b)$ if and
-      only if $a \leq b$.
+      To show that it's an isomorphism of Boolean algebras, we'll show that
+      $H(a) \leq H(b)$ if and only if $a \leq b$.
 
       If $x \leq y$, and $h$ is any homomorphism with $h(x) = 1$, $h(x) \leq
       h(y)$ implies that $h(y) = 1$. Then, $H(x) \subseteq H(y)$.
 
       Now, assume $x$ is not less than or equal to $y$. Then, $xy \neq x$,
-      $x(1+y) \neq 0$. Consider the ultrafilter which includes this element, and
-      the homomorphism associated with it.
+      $x(1+y) \neq 0$.
+      As we've remarked, for any element, we can find an ultrafilter that
+      includes it, so a homomorphism $h$ with
       \[h(x(1+y)) = 1\]
-      So
+      Then,
+      \[h(x)(1+h(y)) = 1\]
       \[h(x) = 1, h(y) = 0\]
       And then, $h \in H(x)$, $h \notin  H(y)$, and $H(x) \nsubseteq H(y)$.
 
+    \section{Characterization of Boolean Topological Spaces}
 
       We can also now prove that every Boolean topological space $X$ is
       homeomorphic to the Stone space of the Boolean algebra of clopen subsets of
-      $X$.
+      $X$: $X = S(B(X))$.
 
       We've seen that the Boolean algebra of clopen sets of $X$ is a basis for
       the topology on any Boolean topological space. For all $x \in X$, define
@@ -626,7 +680,7 @@ ive, since we've seen that $a$ is unique.
 
       Now, we'll show that it's injective.
 
-      ]If $x \neq y$, because $X$ is Hausdorrf, we can find an open set $O$ with
+      If $x \neq y$, because $X$ is Hausdorrf, we can find an open set $O$ with
       $x \in O$, $y \notin O$. $O$ is a union of basic open sets, so there's a
       clopen set $\Omega \in B(X)$ with $x \in \Omega$, $y\notin \Omega$. Then,
       \[f_x(\Omega) = 1 \neq f_y(\Omega) = 0\]
@@ -757,23 +811,25 @@ ive, since we've seen that $a$ is unique.
       \[(\Phi \circ \Psi)(\alpha) = \Phi(H_{A'}^{-1} \circ \alpha^{-1} \circ
       H_A)\]
       \[= h \mapsto h \circ H_{A'}^{-1} \circ \alpha^{-1} \circ H_A \]
+      \[= h \mapsto (a \mapsto (h \circ H_{A'}^{-1} \circ \alpha^{-1} \circ
+      H_A)(a)) \]
 
       Let $U$ be the argument of $h \circ H_{A'}^{-1}$ in the expression, so
 
-      \[U \in S(B(A)) = \alpha^{-1} (H_A (a))\]
+      \[U \in B(S(A)) = \alpha^{-1} (H_A (a))\]
       \[ = \alpha^{-1} \{h \in S(A) : h(a) = 1 \}\]
       \[ = \{h' \in S(A') :\alpha(h') \in \{ h \in S(A) : h(a) = 1\} \}\]
       \[ = \{h' \in S(A') : \alpha(h')(a) = 1\} \]
 
 
-      $U$ is equal to $\{h \in S(X) : h(\Omega) = 1\}$ for some $\Omega \in
-      B(X)$. Then,
+      $U$ is equal to $\{h \in S(A') : h(u) = 1\}$ for some $u \in A'$. Then,
 
-      \[ h ( H_{A'}^{-1} (U)) =  h(H_A^{-1}(\{h \in S(X) : h(\Omega) = 1\})) = h(H_A^{-1}(H_A(\Omega))) =
-      h(\Omega)\]
+      \[ h ( H_{A'}^{-1} (U)) =  h(H_A^{-1}(\{h \in S(X) : h(u) = 1\})) =
+      h(H_A^{-1}(H_A(u))) =
+      h(u)\]
 
-      By definition, $\Omega$ is the number such that $h \in U$ if and only if
-      $h(\Omega) = 1$. Then,
+      By definition, $u$ is the element of $A'$ such that $h \in U$ if and only if
+      $h(u) = 1$. Then,
       \[ h ( H_{A'}^{-1} (U)) = 1 \text{ if and only if } h \in U\]
       \[ h ( H_{A'}^{-1} (U)) = 1 \text{ if and only if } h \in \{h' \in S(A') :
       \alpha(h')(a) = 1\} \]
@@ -785,26 +841,174 @@ ive, since we've seen that $a$ is unique.
       \[(\Phi \circ \Psi)(\alpha) =  h \mapsto \alpha(h)\]
       \[(\Phi \circ \Psi)(\alpha) = \alpha\]
 
-    To Do:
-
       So, $\Phi$ defines a map from the morphisms of the category of Boolean
       algebras and homomorphisms to the morphisms of the category of Boolean
       topological spaces and continuous functions. With $S$ mapping the objects,
-      it's a functor -- $\Phi(\text{id}) = \text{id}$ and $\Phi(g \circ f) =
-      \Phi(g) \circ \Phi(f)$ is satisfied, since it's a very standard
-      construction:
+      it's a contravariant functor -- $\Phi(\text{id}) = \text{id}$ and $\Phi(g \circ f) =
+      \Phi(g) \circ \Phi(f)$ is satisfied.
+
+      Similarly $\Psi$ defines a functor mapping the objects $S(X)$ to $X$ (not
+      $B(S(X))$) -- the required rules are easy enough to check -- and since
+      these are exactly inverses, they form an equivalence of categories.
+
+    \section{Epilogue: Uses of the Axiom of Choice}
+
+      We've used two theorems derived from the axiom of choice in the paper --
+      Krull's Theorem, and Tychonoff's Theorem, and I hadn't seen a proof of
+      Zorn's Lemma before, so I thought this might be a nice place to discuss
+      those. It'll also be a nice opportunity to say a few things about
+      compactness.
+
+      \subsection{Zorn's Lemma}
+
+        Let $\leq$ be a partial order of the set $X$. Given a totally ordered
+        subset $C$, define
+
+        \[P(C,x) = \{y \in C: y < x\}\]
+
+        Suppose every totally ordered subset of $X$ has an upper bound. Assume
+        by contradiction that $X$ must not have a maximal element.
+
+        As a remark, this implies that $X$ must not be empty since $\{\}$ is a
+        totally ordered subset, and must have an upper bound.
+
+        Given any chain $C$, we can find an upper bound $u$, and then, by
+        assumption, an $x$ with $x>u$, so strict upper bound. Using the axiom of
+        choice, assign every totally ordered subset $C$, a strict upper bound
+        $f(C)$.
+
+        Call a subset $A$ of $X$ conforming if $\leq$ defines a well ordering on
+        $A$, and for each $x$, $x = f(P(A,x))$.
+
+        Lemma: If $A$ and $B$ are conforming subsets, $A \neq B$, then $A$ must
+        be $P(B,x)$ for some $x$ or vice versa.
+
+        Proof: If $A \neq B$, either $A/B$ or $B/A$ is nonempty, without loss of
+        generality, assume $A/B \neq \{\}$.
+
+        Then, since $A$ is well-ordered, $A/B$ has a least element $x$. If $k
+        \in A, k < x$, my the minimality of $x$, $k$ must be in $B$. Then, by
+        definition of $P$,
+
+        \[P(A,x) \subseteq B\]
+
+        We'll prove by contradiction that this is an equality. Assume that $B \
+        P(A,x)$ is nonempty. Then, it has a least element $y$.
+
+        Let $u \in P(B,y)$. For all $v \in A$, $v<u$, $v$ must be in $B$.
+        Otherwise,
+
+        \[v \in A \ B \text{, so } x \leq v\]
+
+        Now, $u > v \geq x$. $u \in B$, $u \notin \{a \in A: a < x\}$. However,
+        $u < y$ because $u \in P(B,y)$, which contradicts the minimality of $y$
+        in $B \ P(A,x)$.
+
+        Since $v \in B$, $v < u < y$, $v \on P(B,y)$.
+
+        Now, let $z$ be the least element of $A \ P(B,y)$. Note $A \ P(B,y)
+        \supseteq A \ B$, so $z \leq x$. Then, $z \in P(A,x) \subseteq B$.
+
+        If $w \in P(A,z)$, $w \in A$, $w < z$, so $w \notin A \ P(B,y)$ by the
+        minimality of $z$ in that set. Then, $w \in P(B,y)$.
+
+        If $w \in P(B,y)$, since $z \in B$, $w$ and $z$ must be comparable,
+        since $B$ is well-ordered. If $z < w$, $z \in P(B,y)$ as we
+        discussed. This is impossible, since $z \in A \ P(B,y)$. $z = w$ also
+        implies $z \in P(B,y)$. Then, we conclude that $w < z$,
+
+        Also, note that $y$ is minimal in $B \ P(A,x)$. $w \in B$, $w < y$,
+        $w<z \leq x$. So, $w$ must be in $A$ to not contradict the minimality of
+        $y$. Then, $w \in P(A,z)$.
+
+        We conclude that
+
+        \[P(A,z) = P(B,y)\]
+
+        But, since $A$ and $B$ are conforming,
+
+        \[z = f(P(A,z)) = f(P(B,y)) = y\]
+
+        Since $x \in A \ B$, $y \in B$ implies $z \neq x$. Then, $z < x$, $z \in
+        A$, so $z \in P(A,x)$. But, $y$ should be in $B \ P(A,x)$, which is the
+        contradiction. This concludes the proof of the lemma.
+
+        Now, if $A$ is a conforming subset of $X$, $a \in A$, and $y < a$, $y
+        \notin A$, $y$ cannot be in any conforming subset $B$ -- then, since
+        either $A$ is a subset of $B$ or vice versa, and $y \in B \ A$, $A$ must
+        be $P(B,x)$ for some $x$. Then, $y < a < x$, which means $y$ should be
+        in $A$.
+
+        Let $U$ be the union of all conforming subsets of $X$. Then, any subset
+        of $U$ must be contained in a single conforming subset -- assume by
+        contradiction there is a subset $S$ not contained in a single conforming
+        set. Then, it must have two elements $a, b$ with $a \in A - B$, $b \in B
+        - A$ for conforming subsets $A, B$. This is a contradiction, since we've
+        proved that given any two conforming subsets, one must be a subset of
+        the other. So, any subset of $U$ must be well-ordered.
+
+        Also, for all $x \in U$, $x \in A$ for some conforming subset $A$, so
+        $x = f(P(A,x))$. But then, if $u \in U$, $u < x$, $u \in A$ since
+        otherwise $u$ can not be in any other conforming subset, so it can't be
+        in $U$. So,
+        \[P(A,x) = \{a \in A: a < x\} = \{u \in U: u < x\} = P(U,x)\]
+        \[x = f(P(A,x)) = f(P(U,x))\]
+
+        So, $U$ is a conforming subset.
+
+        Let $x = f(U)$. Since $x$ is greater than any element of $U$, $U \cup
+        \{x\}$ is still well-ordered. For all $u \in U$, $P(U,y)$ = $P(U
+        \cup\{x\},y)$ since $x>u$ anyway, and
+
+        \[f(x) = f(P(U \cup \{x\}, x)) = f(U)\]
+
+        So $\{x\} \cup U$ is a conforming subset, which contradicts the
+        assumption that $U$ was the union of all the conforming subsets. Then,
+        $X$ must have a maximal element.
+
+      \subsection{Krull's Theorem}
+
+        Let $R$ be a commutative ring, $I$ be a proper ideal. We'll prove that
+        it must be included in some maximal proper ideal.
+
+        \[E = \{\text{ideal J of R} : I \subseteq J\}\]
+
+        Let $C$ be some totally ordered subset. If it's empty, $I$ is an upper
+        bound, and included in $E$.
+
+        If it's nonempty, consider the set
+
+        \[I_0 = \bigcup_{J \in C} J\]
+
+        $0 \in I_0$ since it's nonempty, and all of its elements are ideals,
+        which must contain $0$. If it contains $x$, one of its elements $J$
+        contains $x$, then it contains $-x$ as well, and so does $I_0$.
+
+        If $x, y \in I_0$, $x \in J_1, y  \in J_2$ for some $J_1, J_2 \in C$.
+        $C$ is totally ordered -- without loss of generality, $J_1 \subseteq
+        J_2$. Then, $x, y \in J_2$, so $x + y \in J_2 \subseteq I_0$.
+
+        Finally, if $r \in R$, $x \in I_0$, $x \in J$ for some ideal $J$, $rx
+        \in J \subseteq I_0$.
+
+        Also $a \notin I_0$ since it can't be in any of its elements.
+
+        So, $I_0$ is a proper ideal which contains $I$ and all the elements of
+        $C$, so an upper bound in $C$. Then, by Zorn's Lemma, $E$ must contain a
+        maximal element, a maximal proper ideal containing $I$.
+
+        Note that this argument is easily generalized to find a maximal left
+        or right ideal containing a given left of right ideal respectively.
+
+      \subsection{Tychonoff's Theorem}
+
+        
 
 
+      
 
+  
 
-      -- section on homomorphisms + isomorphisms
-      -- category equicalence
-      -- organize better
-      -- x + 1 for complements isn't great, introduce + use $x^c$ notation
-
-      -- future content:
-      -- equivalent forms of aoc
-      -- atomless + countable boolean algebra
 
 \end{document}
 
