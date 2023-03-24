@@ -23,7 +23,8 @@
 \begin{document}
   \maketitle
 
-  \section{Introduction}
+
+  \begin{abstract}
 
     Boolean algebras are initially defined as rings where $x^2 = x$ or partial
     orders with certain properties. We then define the notions of filters and
@@ -32,26 +33,31 @@
     of the so called Stone space of a Boolean algebra. We then introduce the
     notion of Boolean topological spaces, and classify Boolean algebras and
     Boolean topological spaces in terms of each other. We conclude by showing a
-    bijection between homomorphisms of two Boolean algebras and continuous
-    functions between their Boolean topological spaces, forming an equivalence
-    of categories. This result is known as Stone's representation theorem, and
+    bijection between homomorphisms of Boolean algebras and continuous functions
+    between their Boolean topological spaces, forming an equivalence of
+    categories. This result is known as Stone's representation theorem, and
     while not explored here, can be extended to a more general result known as
     Stone duality.
 
+  \end{abstract}
+
     \section{Uses of the Axiom of Choice}
 
-      I had never seen a proof of Zorn's Lemma before, so I thought this might
-      be a nice place to discuss that. While initially I intended to attach this
-      at the end as something tangentially related to the topic, we'll use
-      several important results from this section -- including the Ultrafilter
-      Lemma, Tychonoff's theorem, and even the fact that  in a compact Hausdorff
-      space, every ultrafilter converges to a unique point.
+      In this section, we'll discuss one proof of Zorn's Lemma assuming the
+      axiom of choice, and then one consequence, Tychonoff's Theorem, and
+      several basic facts about ultrafilters.
+
+      We'll later use several important results from this section -- including
+      the Ultrafilter Lemma, Tychonoff's theorem, and even the fact that in a
+      compact Hausdorff space, every ultrafilter converges to a unique point.
+
+      The outline of the proof of Zorn's Lemma comes from \cite{zorn}, and the
+      outline of Tychonoff's Theorem comes from \cite{tych}.
 
       \subsection{Zorn's Lemma}
 
-        I've found the outline of the following proof in a paper remarking that
-        it neither uses ordinals or transfinite induction. It is, in turn,
-        pretty complicated.
+        The lemma states that if every totally ordered subset of a partial order
+        $A$ has a maximal element, then the set must have a maximal element too.
 
         Let $\leq$ be a partial order of the set $X$. Given a totally ordered
         subset $C$, define
@@ -59,7 +65,8 @@
         \[P(C,x) = \{y \in C: y < x\}\]
 
         Suppose every totally ordered subset of $X$ has an upper bound. Assume
-        by contradiction that $X$ must not have a maximal element.
+        that $X$ must not have a maximal element. We'll show that this leads to
+        a contradiction.
 
         Given any totally ordered subset $C$, we can find an upper bound $u$,
         and then, by assumption, an $x$ with $x>u$, so a strict upper bound.
@@ -242,6 +249,9 @@
         $E$, so a filter $F_1$ including $F$ not contained in any other filter.
         This is exactly what an ultrafilter is, so the proof is complete.
         \end{proof}
+
+        Everything up to now works when $A$ is an arbitrary set, but from now
+        on, we'll assume $A$ is a topological space.
 
         Compactness is usually stated:
 
@@ -449,6 +459,9 @@
         % mention compactness for logic?
 
   \section{Boolean Algebras}
+
+    Most of the rest of the paper comes from chapter 2 of \cite{bool}. The last
+    section comes from an exercise at the end.
 
     \subsection{Boolean Algebras as Rings}
 
@@ -922,8 +935,6 @@
 
     \section{The Stone space of a Boolean algebra}
 
-      \subsection{Zero Dimensional Topological Spaces}
-
         A topological space is said to be zero dimensional if it has a basis
         consisting of closed sets.
 
@@ -1118,11 +1129,11 @@
 
       \subsection{An Example}
 
-        This result shows that every Boolean algebra $A$ is isomorphic to $B(S(A))$, so
-        the Boolean algebra of certain subsets of some set. Can we say that
-        every Boolean algebra is isomorphic to the Boolean algebra of the set of
-        all subsets of some set? While, as we'll see, this is true for finite
-        Boolean algebras, it's not true in the general case.
+        This result shows that every Boolean algebra $A$ is isomorphic to
+        $B(S(A))$, so the Boolean algebra of certain subsets of some set. Can we
+        say that every Boolean algebra is isomorphic to the Boolean algebra of
+        the set of all subsets of some set? While, as we'll see, this is true
+        for finite Boolean algebras, it's not true in the general case.
 
         To see why, define the following notion:
 
@@ -1315,7 +1326,7 @@
         Let $f$ be such a function. Notice that out of $f(\{a\})$, $f(\{b\})$,
         $f(\{c\})$, at most one can be true, since, for example
 
-        \[f(\{a\}) = (f(\{b\} \cup \{c\})^c = (f(\{b\}) \vee f(\{c\}))^c\]
+        \[f(\{a\}) = f(\{b\} \cup \{c\})^c = (f(\{b\}) \vee f(\{c\}))^c\]
 
         Also, since $f(1) = f(\{a\}) \vee f(\{b\}) \vee f(\{c\}) = 1$, exactly
         one of these must be true. So, $S(B(X))$ has three elements:
@@ -1436,19 +1447,26 @@
       maps objects to isomorphic objects, they're natural transformations of the
       identity functors, and this forms an equivalence of categories.
 
-    \section{Sources}
+    \clearpage
 
-    \begin{itemize}
-      \item Cori Ren\'e, and Daniel Lascar. “Chapter 2: Boolean Algebras.” Mathematical Logic: A Course with Exercises, Oxford University Press, Oxford, 2008. 
-      \item Lewin, Jonathan. “A Simple Proof of Zorn's Lemma.” The American
-      Mathematical Monthly, vol. 98, no. 4, 1991, p. 353.,
+    \begin{thebibliography}{9}
+
+      \bibitem{bool} Cori Ren\'e, and Daniel Lascar. “Chapter 2: Boolean
+      Algebras.” Mathematical Logic: A Course with Exercises, Oxford University
+      Press, Oxford, 2008. 
+
+      \bibitem{zorn} Lewin, Jonathan. “A Simple Proof of Zorn's Lemma.” The
+      American Mathematical Monthly, vol. 98, no. 4, 1991, p. 353.,
       \url{https://doi.org/10.2307/2323807}.
-      \item Norwood, Zack. FILTER CONVERGENCE AND TYCHONOFF’S THEOREM.
+
+      \bibitem{tych} Norwood, Zack. FILTER CONVERGENCE AND TYCHONOFF’S THEOREM.
       \url{http://www-personal.umich.edu/~norwoodz/ucla/files/tychultrafilters.pdf}.
-      \item “Stone's Representation Theorem for Boolean Algebras.” Wikipedia,
-      Wikimedia Foundation, 29 Jan. 2023,
+
+      \bibitem{wiki} “Stone's Representation Theorem for Boolean Algebras.”
+      Wikipedia, Wikimedia Foundation, 29 Jan. 2023,
       \url{https://en.wikipedia.org/wiki/Stone%27s_representation_theorem_for_Boolean_algebras}.
-    \end{itemize}
+
+    \end{thebibliography}
 
 
 \end{document}
